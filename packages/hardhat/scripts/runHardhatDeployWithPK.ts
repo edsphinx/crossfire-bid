@@ -1,7 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import { Wallet } from "ethers";
-import password from "@inquirer/password";
 import { spawn } from "child_process";
 import { config } from "hardhat";
 
@@ -33,7 +32,12 @@ async function main() {
     return;
   }
 
-  const pass = await password({ message: "Enter password to decrypt private key:" });
+  const pass = process.env.DEPLOYER_PASSWORD;
+
+  if (!pass) {
+    console.log("🚫️ DEPLOYER_PASSWORD environment variable not set.");
+    return;
+  }
 
   try {
     const wallet = await Wallet.fromEncryptedJson(encryptedKey, pass);

@@ -25,6 +25,7 @@ export default defineConfig([
         "warn",
         {
           endOfLine: "auto",
+          semi: false,
         },
       ],
     },
