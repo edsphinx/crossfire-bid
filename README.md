@@ -83,6 +83,59 @@ These locally available contracts enable full control over deployments on local 
 
 ---
 
+## 🔗 Deployed Contracts & Test Information
+
+This section lists relevant contract addresses for testing and development.
+
+### Our Project's Sepolia Deployments (For Controlled Testing)
+
+These are contracts we have deployed on Sepolia for our specific testing needs, and their code is integrated into this repository for direct interaction and testing.
+
+- **Deployed WETH9 contract address**: `0x9d42A3E42eb5CC7D47DeE5f74E15f48f31A9a691`
+- **LimitOrderProtocol (public)**: `0x0b9aD27E24A17e9cFE5eDD2455238612189F0A48`
+- **EscrowFactory**: `0x9ad8aD2458dD3D1B440F0216C78c354e84F8C75c`
+
+### Public 1inch Developer Deployments on Sepolia
+
+We are also using these existing 1inch deployments on Sepolia for additional testing and reference. While we are not deploying these ourselves, they provide a stable environment for integration.
+
+- **EscrowFactory**: [0x0bd657709620f1a5901c4651dd8be9eff4dfd9ae](https://sepolia.etherscan.io/address/0x0bd657709620f1a5901c4651dd8be9eff4dfd9ae)
+- **EscrowSrc**: [0x5381b245c700ad000ea623dc39cb34cffd00b35d](https://sepolia.etherscan.io/address/0x5381b245c700ad000ea623dc39cb34cffd00b35d)
+- **EscrowDst**: [0x40b8e0cb5930a0cff4fb2d274747ff101928bf8d](https://sepolia.etherscan.io/address/0x40b8e0cb5930a0cff4fb2d274747ff101928bf8d)
+- **FeeBank**: [0x7175dcd26ca91d75009c5151f40aec45c99b37c7](https://sepolia.etherscan.io/address/0x7175dcd26ca91d75009c5151f40aec45c99b37c7)
+- **AggregationRouterV6 (LimitOrderProtocol)**: [0x111111125421cA6dc452d289314280a0f8842A65](https://sepolia.etherscan.io/address/0x111111125421cA6dc452d289314280a0f8842A65)
+- **WETH9**: [0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14](https://sepolia.etherscan.io/address/0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14)
+
+---
+
+## 📚 Key Resources & References
+
+### EVM Monitoring
+
+- Etherscan (Sepolia): [https://sepolia.etherscan.io/](https://sepolia.etherscan.io/)
+
+### Non-EVM (XRPL) Monitoring
+
+- XRPL Escrow Toolkit: [https://test.xrptoolkit.com/escrow](https://test.xrptoolkit.com/escrow)
+- XRPL Testnet Explorer: [https://testnet.xrpl.org/](https://testnet.xrpl.org/)
+
+### 1inch Protocol References
+
+- Limit Order Protocol Description: [https://github.com/1inch/limit-order-protocol/blob/master/description.md](https://github.com/1inch/limit-order-protocol/blob/master/description.md)
+- 1inch Cross-Chain Resolver Example: [https://github.com/1inch/cross-chain-resolver-example](https://github.com/1inch/cross-chain-resolver-example)
+- 1inch Limit Order Protocol Repository: [https://github.com/1inch/limit-order-protocol](https://github.com/1inch/limit-order-protocol)
+
+### XRPL References
+
+- XRPL Code Samples (Escrow): [https://github.com/XRPLF/xrpl-dev-portal/tree/master/\_code-samples/escrow](https://github.com/XRPLF/xrpl-dev-portal/tree/master/_code-samples/escrow)
+- XRPL.org Create Conditional Escrows Tutorial: [https://xrpl.org/docs/tutorials/javascript/send-payments/create-conditional-escrows](https://xrpl.org/docs/tutorials/javascript/send-payments/create-conditional-escrows)
+- JS XRPL EscrowCreate Interface: [https://js.xrpl.org/interfaces/EscrowCreate.html](https://js.xrpl.org/interfaces/EscrowCreate.html)
+- XRPL Faucets (General): [https://xrpl.org/resources/dev-tools/xrp-faucets](https://xrpl.org/resources/dev-tools/xrp-faucets)
+- XRPL Explorer Testnet Faucet: [https://test.xrplexplorer.com/en/faucet](https://test.xrplexplorer.com/en/faucet)
+- XRPL Toolkit Create and Release Escrows: [https://docs.xrptoolkit.com/create-and-release-escrows](https://docs.xrptoolkit.com/create-and-release-escrows)
+
+---
+
 ## Requirements
 
 Before you begin, you need to install the following tools:
