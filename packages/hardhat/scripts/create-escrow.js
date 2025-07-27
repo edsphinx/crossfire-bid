@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 ("use strict");
 const dotenv = require("dotenv");
 dotenv.config();
 const xrpl = require("xrpl");
-const cc = require('five-bells-condition');
-const crypto = require('crypto');
+const cc = require("five-bells-condition");
 
 // Useful Documentation:-
 // 1. five-bells-condition: https://www.npmjs.com/package/five-bells-condition

@@ -22,13 +22,18 @@
     "verify": "hardhat etherscan-verify"
   },
   "dependencies": {
+    "@1inch/fusion-sdk": "^2.3.5",
+    "@1inch/limit-order-protocol-contract": "^4.3.2",
     "@1inch/limit-order-sdk": "^4.9.5-rc.0",
+    "@1inch/limit-order-settlement": "^3.1.0",
+    "@1inch/solidity-utils": "^6.6.0",
     "@inquirer/password": "^4.0.2",
     "@openzeppelin/contracts": "~5.0.2",
     "@typechain/ethers-v6": "~0.5.1",
     "axios": "^1.11.0",
     "dotenv": "~16.4.5",
     "envfile": "~7.1.0",
+    "openzeppelin-contracts": "^4.0.0",
     "qrcode": "~1.5.4",
     "xrpl": "^4.3.0"
   },
