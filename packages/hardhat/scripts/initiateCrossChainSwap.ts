@@ -113,8 +113,8 @@ async function main(): Promise<string | null> {
   // --- 4. Prepare Timelocks ---
   console.log("[DEBUG] Step 6: Preparing Timelocks...");
   const dstWithdrawalOffset = Math.floor(Date.now() / 1000);
-  const dstPublicWithdrawalOffset = dstWithdrawalOffset + 5 * 60; // 5 minutes
-  const dstCancellationOffset = dstWithdrawalOffset + 10 * 60; // 10 minutes
+  const dstPublicWithdrawalOffset = dstWithdrawalOffset + 30; // 30 seconds
+  const dstCancellationOffset = dstWithdrawalOffset + 60; // 1 minute
   console.log("Timelocks:");
   console.log("dstWithdrawalOffset:", dstWithdrawalOffset);
   console.log("dstPublicWithdrawalOffset:", dstPublicWithdrawalOffset);
