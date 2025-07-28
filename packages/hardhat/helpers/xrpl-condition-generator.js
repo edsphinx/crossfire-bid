@@ -7,7 +7,6 @@ const fs = require("fs");
 // This script is the source of truth for the secret (preimage).
 // It always generates a new secret, saves it to a file,
 // and outputs a JSON object with the condition and fulfillment.
-
 const secretBuffer = crypto.randomBytes(32);
 const secretHex = secretBuffer.toString("hex").toUpperCase();
 

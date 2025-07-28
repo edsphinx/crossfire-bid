@@ -7,7 +7,6 @@ import ESCROW_FACTORY_ABI from "../../externalAbis/EscrowFactory.json";
 import { packTimelocks } from "../helpers/timelocks-helper";
 
 async function main(): Promise<string | null> {
-  // Added return type
   // --- 1. Generate Secret, Hashlock, Condition, and Fulfillment ---
   console.log("[DEBUG] Step 1: Generating secret and conditions...");
   let conditionData: { secret: string; hashlock: string; condition: string; fulfillment: string };
@@ -25,7 +24,8 @@ async function main(): Promise<string | null> {
 
   // --- 2. Configuration ---
   console.log("[DEBUG] Step 2: Loading configuration...");
-  const API_URL = "http://localhost:3000/api/cross-chain-htlc-swaps"; // Updated API endpoint
+  const API_URL = "http://localhost:3000/api/cross-chain-htlc-swaps";
+  const MONITOR_API_URL = "http://localhost:3000/api/htlc-monitor";
   const networkName = "sepolia";
   const networkConfig = config.networks[networkName];
   if (!("url" in networkConfig)) {
@@ -45,7 +45,7 @@ async function main(): Promise<string | null> {
   const PRIVATE_KEY = (await Wallet.fromEncryptedJson(DEPLOYER_PRIVATE_KEY_ENCRYPTED, DEPLOYER_PASSWORD)).privateKey;
 
   const ESCROW_FACTORY_ADDRESS = "0x0bd657709620f1a5901c4651dd8be9eff4dfd9ae";
-  const MAKER_EVM_ADDRESS = "0x622DfAaf7443aA6fE0b6b106D3a68CAD0754b749";
+  const MAKER_EVM_ADDRESS = "0x90385AB8beb475aA707b0D2597B81494b062E583";
   const TAKER_EVM_ADDRESS = "0xeA5A20D8d9Eeed3D8275993bdF3Bdb4749e7C485";
   const MAKER_EVM_TOKEN_ADDRESS = "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14";
   const AMOUNT_EVM = ethers.parseUnits("0.0005", 18);
@@ -68,6 +68,22 @@ async function main(): Promise<string | null> {
   if (TAKER_XRP_ADDRESS === "r...") {
     console.warn("[WARN] RECEIVER_ADDRESS not set. Using placeholder for TAKER_XRP_ADDRESS.");
   }
+
+  // --- 3. Validate Configuration ---
+  console.log("[DEBUG] Step 3: Validating configuration...");
+  if (
+    !MAKER_EVM_ADDRESS ||
+    !TAKER_EVM_ADDRESS ||
+    !MAKER_EVM_TOKEN_ADDRESS ||
+    !MAKER_XRP_ADDRESS ||
+    !TAKER_XRP_ADDRESS
+  ) {
+    throw new Error("Validation failed: One or more addresses are missing.");
+  }
+  if (!conditionData.secret || !conditionData.hashlock || !conditionData.condition) {
+    throw new Error("Validation failed: Secret, hashlock, or condition is missing.");
+  }
+  console.log("[DEBUG] Configuration validated successfully.");
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
@@ -97,8 +113,8 @@ async function main(): Promise<string | null> {
   // --- 4. Prepare Timelocks ---
   console.log("[DEBUG] Step 6: Preparing Timelocks...");
   const dstWithdrawalOffset = Math.floor(Date.now() / 1000);
-  const dstPublicWithdrawalOffset = dstWithdrawalOffset + 5 * 60; // 2 hours
-  const dstCancellationOffset = dstWithdrawalOffset + 10 * 60; // 3 hours
+  const dstPublicWithdrawalOffset = dstWithdrawalOffset + 5 * 60; // 5 minutes
+  const dstCancellationOffset = dstWithdrawalOffset + 10 * 60; // 10 minutes
   console.log("Timelocks:");
   console.log("dstWithdrawalOffset:", dstWithdrawalOffset);
   console.log("dstPublicWithdrawalOffset:", dstPublicWithdrawalOffset);
@@ -111,7 +127,6 @@ async function main(): Promise<string | null> {
   const timelocksPacked = packTimelocks(dstWithdrawalOffset, {
     dstWithdrawal: dstPublicWithdrawalOffset,
     dstCancellation: dstCancellationOffset,
-    // Add other relevant timelocks if needed for SrcEscrow
   });
   console.log(`[DEBUG] Packed Timelocks (BigInt): ${timelocksPacked.toString()}`);
 
@@ -164,12 +179,35 @@ async function main(): Promise<string | null> {
       },
       evmTxHash: tx.hash,
       evmTimelock: dstCancellationOffset,
+      evmPublicWithdrawTimelock: dstPublicWithdrawalOffset,
     };
     console.log("[DEBUG] Swap data payload:", swapData);
+
+    // --- Validate Swap Data before saving to DB ---
+    console.log("[DEBUG] Validating swap data before saving to DB...");
+    for (const [key, value] of Object.entries(swapData)) {
+      if (value === undefined || value === null || value === "") {
+        throw new Error(`Validation failed: ${key} is missing from swap data.`);
+      }
+    }
+    console.log("[DEBUG] Swap data validated successfully.");
 
     const apiResponse = await axios.post(API_URL, swapData);
     uuid = apiResponse.data.data.uuid;
     console.log("Swap data stored successfully. UUID:", uuid);
+
+    // --- Create HTLC Monitor record ---
+    console.log("[DEBUG] Step 9: Creating HTLC Monitor record...");
+    const monitorData = {
+      swapUuid: uuid,
+      chainType: "EVM",
+      status: "PENDING",
+      txHash: tx.hash,
+      secretHash: conditionData.hashlock,
+      timelock: dstCancellationOffset,
+    };
+    await axios.post(MONITOR_API_URL, monitorData);
+    console.log("HTLC Monitor record created successfully.");
   } catch (error: any) {
     console.error("Error initiating cross-chain swap:", error);
     if (error.response) {
