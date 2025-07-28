@@ -58,6 +58,10 @@ export async function PUT(request: NextRequest, context: RouteContext) {
       newEvent.chainType = body.nonEVMChainType; // Use the actual chain type
       newEvent.details.txType = "NON_EVM_HTLC_CREATION";
     }
+    if (body.nonEVMSequence) {
+      // Added
+      updates.nonEVMSequence = body.nonEVMSequence;
+    }
     // ... handle other updates and add details to newEvent ...
     if (body.errorMessage) {
       updates.errorMessage = body.errorMessage;

@@ -56,8 +56,12 @@ export interface ICrossChainHtlcSwap extends Document {
   evmClaimTxHash?: string;
   nonEVMClaimTxHash?: string;
 
+  // Sequence numbers
+  nonEVMSequence?: number; // For XRP Ledger OfferSequence
+
   // Timelocks
   evmTimelock?: number; // Unix timestamp
+  evmPublicWithdrawTimelock?: number; // Unix timestamp for public withdrawal
   nonEVMTimelock?: number; // Unix timestamp
 
   // Error logging
@@ -137,7 +141,10 @@ const CrossChainHtlcSwapSchema: Schema = new Schema(
     evmClaimTxHash: { type: String },
     nonEVMClaimTxHash: { type: String },
 
+    nonEVMSequence: { type: Number },
+
     evmTimelock: { type: Number },
+    evmPublicWithdrawTimelock: { type: Number },
     nonEVMTimelock: { type: Number },
 
     errorMessage: { type: String },
