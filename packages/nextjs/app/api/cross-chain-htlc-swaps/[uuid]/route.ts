@@ -3,16 +3,16 @@ import dbConnect from "~~/app/lib/db/connect";
 import CrossChainHtlcSwap, { ISwapEvent, SwapStatus } from "~~/app/lib/db/models/CrossChainHtlcSwap";
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }
 
 export async function GET(request: NextRequest, context: RouteContext) {
   await dbConnect();
 
   try {
-    const { uuid } = context.params;
+    const { uuid } = await context.params;
     const swap = await CrossChainHtlcSwap.findOne({ uuid });
     if (!swap) {
       return NextResponse.json({ success: false, message: "Swap not found" }, { status: 404 });
@@ -28,7 +28,7 @@ export async function PUT(request: NextRequest, context: RouteContext) {
   await dbConnect();
 
   try {
-    const { uuid } = context.params;
+    const { uuid } = await context.params;
     const body = await request.json();
     const updates: any = {};
     const newEvent: ISwapEvent = {
@@ -93,7 +93,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
   await dbConnect();
 
   try {
-    const { uuid } = context.params;
+    const { uuid } = await context.params;
     const deletedSwap = await CrossChainHtlcSwap.findOneAndDelete({ uuid });
 
     if (!deletedSwap) {

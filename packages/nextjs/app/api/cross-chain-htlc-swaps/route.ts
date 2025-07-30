@@ -26,10 +26,12 @@ export async function POST(request: NextRequest) {
       nonEVMTxHash,
       evmClaimTxHash,
       nonEVMClaimTxHash,
-      nonEVMSequence, // Added
+      nonEVMSequence,
       evmTimelock,
       evmPublicWithdrawTimelock,
       nonEVMTimelock,
+      creationTime,
+      safetyDepositAmount, // Added
       errorMessage,
     } = body;
 
@@ -73,10 +75,12 @@ export async function POST(request: NextRequest) {
       nonEVMTxHash,
       evmClaimTxHash,
       nonEVMClaimTxHash,
-      nonEVMSequence, // Added
+      nonEVMSequence,
       evmTimelock,
       evmPublicWithdrawTimelock,
       nonEVMTimelock,
+      creationTime,
+      safetyDepositAmount, // Added
       errorMessage,
       history: [initialEvent],
     });

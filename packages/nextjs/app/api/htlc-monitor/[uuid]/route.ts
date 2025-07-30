@@ -3,15 +3,15 @@ import dbConnect from "~~/app/lib/db/connect";
 import HTLC_Monitor from "~~/app/lib/db/models/HTLC_Monitor";
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }
 
 export async function GET(request: NextRequest, context: RouteContext) {
   await dbConnect();
   try {
-    const { uuid } = context.params;
+    const { uuid } = await context.params;
     const monitor = await HTLC_Monitor.findOne({ swapUuid: uuid });
     if (!monitor) {
       return NextResponse.json({ success: false, message: "HTLC Monitor record not found" }, { status: 404 });
@@ -29,7 +29,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
 export async function PUT(request: NextRequest, context: RouteContext) {
   await dbConnect();
   try {
-    const { uuid } = context.params;
+    const { uuid } = await context.params;
     const body = await request.json();
     const updates: any = {};
     const newEvent: any = {

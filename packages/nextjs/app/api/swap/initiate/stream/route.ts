@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { parseUnits } from "ethers";
-import { initiateEvmEscrow } from "~~/services/core/evm-initiator";
-import { createXrplHtlc } from "~~/services/core/xrpl-htlc-creator";
+import { initiateEvmEscrow } from "~~/services/core/start/evm-initiator";
+import { createXrplHtlc } from "~~/services/core/start/xrpl-htlc-creator";
 
 export async function POST(request: NextRequest) {
   const {
@@ -27,7 +27,14 @@ export async function POST(request: NextRequest) {
 
       try {
         // --- Validation ---
-        if (!makerEVMAddress || !takerEVMAddress || !amountEVM || !amountXRP || !evmPublicWithdrawTimelock || !evmCancellationTimelock) {
+        if (
+          !makerEVMAddress ||
+          !takerEVMAddress ||
+          !amountEVM ||
+          !amountXRP ||
+          !evmPublicWithdrawTimelock ||
+          !evmCancellationTimelock
+        ) {
           throw new Error("Missing required parameters");
         }
 
@@ -46,14 +53,20 @@ export async function POST(request: NextRequest) {
           amountXRP,
           evmPublicWithdrawTimelock,
           evmCancellationTimelock,
-          sendProgress, // Pass the progress callback
+          sendProgress,
         );
 
         if (!evmInitiatorResult) {
           throw new Error("EVM escrow initiation failed.");
         }
 
-        const { uuid, hashlock, xrplCondition, evmTimelock, evmPublicWithdrawTimelock: evmPublicWithdrawTimelockResult } = evmInitiatorResult;
+        const {
+          uuid,
+          hashlock,
+          xrplCondition,
+          evmTimelock,
+          evmPublicWithdrawTimelock: evmPublicWithdrawTimelockResult,
+        } = evmInitiatorResult;
 
         // --- 2. Create XRP HTLC ---
         const xrpCreatorResult = await createXrplHtlc(
@@ -80,7 +93,6 @@ export async function POST(request: NextRequest) {
         };
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(finalData)}\n\n`));
         controller.close();
-
       } catch (error: any) {
         const errorMessage = { error: "Swap initiation failed", details: error.message };
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(errorMessage)}\n\n`));
@@ -93,7 +105,7 @@ export async function POST(request: NextRequest) {
     headers: {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
-      "Connection": "keep-alive",
+      Connection: "keep-alive",
     },
   });
 }
