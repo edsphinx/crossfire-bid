@@ -21,6 +21,9 @@
     "test:e2e": "start-server-and-test start http://localhost:3000 cypress run",
     "ts-node": "node --loader ts-node/esm"
   },
+  "engines": {
+    "node": ">=20.19.3"
+  },
   "dependencies": {
     "@heroicons/react": "~2.1.5",
     "@radix-ui/react-popover": "^1.1.14",
