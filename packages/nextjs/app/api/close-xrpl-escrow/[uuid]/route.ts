@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { closeXrplHtlc } from "~~/services/core/finish/xrpl-htlc-closer";
 
-export async function POST(request: NextRequest, { params }: { params: { uuid: string; }; }) {
+interface RouteContext {
+  params: Promise<{
+    uuid: string;
+  }>;
+}
+
+export async function POST(request: NextRequest, context: RouteContext) {
   // Ahora obtenemos el uuid directamente de los parámetros de la URL
-  const { uuid } = await params;
+  const { uuid } = await await context.params;
 
   // Implementa Server-Sent Events (SSE) para el progreso si lo deseas,
   // similar a tu endpoint POST original. Por simplicidad, aquí usaré
