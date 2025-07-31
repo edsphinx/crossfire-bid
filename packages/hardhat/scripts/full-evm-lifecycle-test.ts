@@ -21,7 +21,8 @@ async function main() {
   if (!DEPLOYER_PRIVATE_KEY_ENCRYPTED || !DEPLOYER_PASSWORD) {
     throw new Error("DEPLOYER_PRIVATE_KEY_ENCRYPTED or DEPLOYER_PASSWORD is not set in .env");
   }
-  const DEPLOYER_PRIVATE_KEY = (await Wallet.fromEncryptedJson(DEPLOYER_PRIVATE_KEY_ENCRYPTED, DEPLOYER_PASSWORD)).privateKey;
+  const DEPLOYER_PRIVATE_KEY = (await Wallet.fromEncryptedJson(DEPLOYER_PRIVATE_KEY_ENCRYPTED, DEPLOYER_PASSWORD))
+    .privateKey;
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
