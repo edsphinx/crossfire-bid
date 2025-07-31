@@ -54,6 +54,7 @@ export interface ICrossChainHtlcSwap extends Document {
   evmTxHash?: string; // For EVM order/escrow creation
   nonEVMTxHash?: string; // For Non-EVM HTLC/escrow creation
   evmClaimTxHash?: string;
+  evmRefundTxHash?: string;
   nonEVMClaimTxHash?: string;
 
   // Sequence numbers
@@ -63,6 +64,10 @@ export interface ICrossChainHtlcSwap extends Document {
   evmTimelock?: number; // Unix timestamp
   evmPublicWithdrawTimelock?: number; // Unix timestamp for public withdrawal
   nonEVMTimelock?: number; // Unix timestamp
+  creationTime?: number;
+
+  // Safety Deposit
+  safetyDepositAmount?: string; // Added
 
   // Error logging
   errorMessage?: string;
@@ -139,6 +144,7 @@ const CrossChainHtlcSwapSchema: Schema = new Schema(
     evmTxHash: { type: String },
     nonEVMTxHash: { type: String },
     evmClaimTxHash: { type: String },
+    evmRefundTxHash: { type: String },
     nonEVMClaimTxHash: { type: String },
 
     nonEVMSequence: { type: Number },
@@ -146,6 +152,9 @@ const CrossChainHtlcSwapSchema: Schema = new Schema(
     evmTimelock: { type: Number },
     evmPublicWithdrawTimelock: { type: Number },
     nonEVMTimelock: { type: Number },
+    creationTime: { type: Number },
+
+    safetyDepositAmount: { type: String }, // Added
 
     errorMessage: { type: String },
 
