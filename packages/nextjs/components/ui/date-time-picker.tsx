@@ -237,7 +237,7 @@ function Calendar({
       };
     }
     return genMonths(locale);
-  }, []);
+  }, [props.locale]);
 
   const YEARS = React.useMemo(() => genYears(yearRange), []);
   const disableLeftNavigation = () => {

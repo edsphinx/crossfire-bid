@@ -127,7 +127,6 @@ async function main() {
     };
     await axios.post(MONITOR_API_URL, monitorData);
     console.log("HTLC Monitor record created successfully.");
-
   } catch (error: any) {
     console.error("Error creating HTLC (Escrow):", error.message);
     // --- Update API with error message ---
