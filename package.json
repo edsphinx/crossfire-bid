@@ -58,7 +58,6 @@
     "node": ">=20.18.3"
   },
   "dependencies": {
-    "next-themes": "^0.4.6",
-    "sonner": "^2.0.6"
+    "next-themes": "^0.4.6"
   }
 }

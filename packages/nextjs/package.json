@@ -59,6 +59,7 @@
     "react-hot-toast": "~2.4.0",
     "select": "^1.1.2",
     "shadcn": "latest",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "usehooks-ts": "~3.1.0",
     "uuidv4": "^6.2.13",
