@@ -1,5 +1,5 @@
-import DST_ESCROW_ABI from "../../../../externalAbis/EscrowDst.json";
-import ESCROW_FACTORY_ABI from "../../../../externalAbis/EscrowFactory.json";
+import DST_ESCROW_ABI from "../../../externalAbis/EscrowDst.json";
+import ESCROW_FACTORY_ABI from "../../../externalAbis/EscrowFactory.json";
 import { packTimelocks } from "../helpers/timelocks-helper";
 import axios from "axios";
 import { Contract, Wallet, ethers } from "ethers";

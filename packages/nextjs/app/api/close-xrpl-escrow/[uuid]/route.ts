@@ -9,7 +9,7 @@ interface RouteContext {
 
 export async function POST(request: NextRequest, context: RouteContext) {
   // Ahora obtenemos el uuid directamente de los parámetros de la URL
-  const { uuid } = await await context.params;
+  const { uuid } = await context.params;
 
   // Implementa Server-Sent Events (SSE) para el progreso si lo deseas,
   // similar a tu endpoint POST original. Por simplicidad, aquí usaré

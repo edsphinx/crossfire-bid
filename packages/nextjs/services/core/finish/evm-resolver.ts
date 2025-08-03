@@ -1,4 +1,4 @@
-import ESCROW_FACTORY_ABI from "../../../../externalAbis/EscrowFactory.json";
+import ESCROW_FACTORY_ABI from "../../../externalAbis/EscrowFactory.json";
 import { packTimelocks } from "../helpers/timelocks-helper";
 import axios from "axios";
 import { Wallet, ethers } from "ethers";

@@ -1,4 +1,4 @@
-import ESCROW_FACTORY_ABI from "../../../../externalAbis/EscrowFactory.json";
+import ESCROW_FACTORY_ABI from "../../../externalAbis/EscrowFactory.json";
 import { packTimelocks } from "../helpers/timelocks-helper";
 import axios from "axios";
 import { execSync } from "child_process";
@@ -57,7 +57,7 @@ export async function initiateEvmEscrow(
   // The 'secret' is revealed by the taker to claim funds on one chain,
   // and its 'hashlock' is used to lock funds on the other chain.
   logProgress("[DEBUG] Step 1: Generating secret and conditions...");
-  let conditionData: { secret: string; hashlock: string; condition: string; fulfillment: string; };
+  let conditionData: { secret: string; hashlock: string; condition: string; fulfillment: string };
   try {
     // This script generates the secret, hashlock, condition, and fulfillment.
     // The 'condition' is for XRP Ledger, 'hashlock' for EVM, and 'fulfillment' is the secret itself.

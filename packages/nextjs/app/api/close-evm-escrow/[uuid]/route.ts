@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { closeEvmEscrow } from "~~/services/core/evm-resolver";
 
-// Importa la función para cerrar el escrow EVM
+interface RouteContext {
+  params: Promise<{
+    uuid: string;
+  }>;
+}
 
-export async function POST(request: NextRequest, { params }: { params: { uuid: string } }) {
+export async function POST(request: NextRequest, context: RouteContext) {
   // Obtenemos el uuid directamente de los parámetros de la URL
-  const { uuid } = await params;
+  const { uuid } = await context.params;
 
   // El cuerpo de la solicitud POST debe contener la acción (claim o refund)
   let requestBody;
