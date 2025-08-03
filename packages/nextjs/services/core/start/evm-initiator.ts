@@ -1,7 +1,7 @@
 import ESCROW_FACTORY_ABI from "../../../externalAbis/EscrowFactory.json";
 import { packTimelocks } from "../helpers/timelocks-helper";
-import generateConditionData from "../helpers/xrpl-condition-generator";
 import axios from "axios";
+import { execSync } from "child_process";
 import { Wallet, ethers } from "ethers";
 
 // import { config } from "hardhat";
@@ -61,7 +61,7 @@ export async function initiateEvmEscrow(
   try {
     // This script generates the secret, hashlock, condition, and fulfillment.
     // The 'condition' is for XRP Ledger, 'hashlock' for EVM, and 'fulfillment' is the secret itself.
-    conditionData = generateConditionData();
+    conditionData = JSON.parse(execSync("node services/core/helpers/xrpl-condition-generator.js").toString());
     console.log("[DEBUG] Generated condition data:", conditionData);
   } catch (error: any) {
     logProgress(
@@ -162,7 +162,7 @@ export async function initiateEvmEscrow(
   // This struct contains all the immutable parameters for the EVM escrow.
   // `hashlock` is the critical link to the XRP Ledger HTLC.
   const dstImmutables = {
-    orderHash: ethers.encodeBytes32String("VortexAuctionOrder"),
+    orderHash: ethers.encodeBytes32String("CrossfireBidOrder"),
     hashlock: conditionData.hashlock, // HTLC critical component
     maker: BigInt(makerEVMAddress),
     taker: BigInt(takerEVMAddress),
