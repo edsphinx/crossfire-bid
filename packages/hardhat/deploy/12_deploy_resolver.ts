@@ -25,20 +25,20 @@ const deployResolver: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
     // For Sepolia, use addresses from environment variables.
     log("Fetching addresses from environment variables for Sepolia...");
     const sepLOP = process.env.SEPOLIA_LIMIT_ORDER_PROTOCOL;
-    // const sepEscrowFactory = process.env.SEPOLIA_ESCROW_FACTORY;
+    const sepEscrowFactory = process.env.SEPOLIA_ESCROW_FACTORY;
 
     // Check if the addresses are provided.
-    if (!sepLOP) {
+    if (!sepLOP || !sepEscrowFactory) {
       throw new Error(
         "ERROR: SEPOLIA_LIMIT_ORDER_PROTOCOL and SEPOLIA_ESCROW_FACTORY environment variables must be set for Sepolia.",
       );
     }
 
     limitOrderProtocolAddress = sepLOP;
-    const sepEscrowFactoryDeployment = await get("EscrowFactory");
-    const sepEscrowFactory = sepEscrowFactoryDeployment.address;
-    log(`EscrowFactory address fetched: ${sepEscrowFactory}`);
     escrowFactoryAddress = sepEscrowFactory;
+
+    log(`EscrowFactory address fetched: ${sepEscrowFactory}`);
+    log(`EscrowFactory address fetched: ${escrowFactoryAddress}`);
   } else {
     // Handle other networks or provide a default error.
     throw new Error(`Unsupported network: ${networkName}`);
