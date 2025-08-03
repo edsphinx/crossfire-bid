@@ -2366,6 +2366,678 @@ const deployedContracts = {
       },
       deployedOnBlock: 23058843,
     },
+    MockUSDC: {
+      address: "0xD4B4B15DB1E73A0572046DdD1eDD1acF591162E1",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "initialSupply",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        allowance: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        name: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      },
+      deployedOnBlock: 23058847,
+    },
+    MockXRP: {
+      address: "0x19361161e8E3A67DE3818B3E5c932c43954C4918",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "initialSupply",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        allowance: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        name: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      },
+      deployedOnBlock: 23058849,
+    },
     WETH9: {
       address: "0x0656702924992528cD905B0b13Ec59C0410FF8e3",
       abi: [
@@ -2649,6 +3321,854 @@ const deployedContracts = {
       ],
       inheritedFunctions: {},
       deployedOnBlock: 23058841,
+    },
+    dstResolver: {
+      address: "0x74B69B5301112e7c97fE45353293fB73f1B0a225",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrowFactory",
+              name: "factory",
+              type: "address",
+            },
+            {
+              internalType: "contract IOrderMixin",
+              name: "lop",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidLength",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "LengthMismatch",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NativeTokenSendingFailure",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address[]",
+              name: "targets",
+              type: "address[]",
+            },
+            {
+              internalType: "bytes[]",
+              name: "arguments",
+              type: "bytes[]",
+            },
+          ],
+          name: "arbitraryCalls",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrow",
+              name: "escrow",
+              type: "address",
+            },
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+          ],
+          name: "cancel",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "dstImmutables",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256",
+              name: "srcCancellationTimestamp",
+              type: "uint256",
+            },
+          ],
+          name: "deployDst",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "salt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "receiver",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "makerAsset",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "takerAsset",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "makingAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "takingAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "MakerTraits",
+                  name: "makerTraits",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IOrderMixin.Order",
+              name: "order",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes32",
+              name: "r",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "vs",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              internalType: "TakerTraits",
+              name: "takerTraits",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes",
+              name: "args",
+              type: "bytes",
+            },
+          ],
+          name: "deploySrc",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrow",
+              name: "escrow",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "secret",
+              type: "bytes32",
+            },
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+          ],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+      deployedOnBlock: 23058853,
+    },
+    srcResolver: {
+      address: "0xf99E68DD3d02261782cdA9c80D65419b12C8577B",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrowFactory",
+              name: "factory",
+              type: "address",
+            },
+            {
+              internalType: "contract IOrderMixin",
+              name: "lop",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidLength",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "LengthMismatch",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NativeTokenSendingFailure",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address[]",
+              name: "targets",
+              type: "address[]",
+            },
+            {
+              internalType: "bytes[]",
+              name: "arguments",
+              type: "bytes[]",
+            },
+          ],
+          name: "arbitraryCalls",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrow",
+              name: "escrow",
+              type: "address",
+            },
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+          ],
+          name: "cancel",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "dstImmutables",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256",
+              name: "srcCancellationTimestamp",
+              type: "uint256",
+            },
+          ],
+          name: "deployDst",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "salt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "receiver",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "makerAsset",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "takerAsset",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "makingAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "takingAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "MakerTraits",
+                  name: "makerTraits",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IOrderMixin.Order",
+              name: "order",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes32",
+              name: "r",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "vs",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              internalType: "TakerTraits",
+              name: "takerTraits",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes",
+              name: "args",
+              type: "bytes",
+            },
+          ],
+          name: "deploySrc",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "contract IEscrow",
+              name: "escrow",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "secret",
+              type: "bytes32",
+            },
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "orderHash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "hashlock",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "Address",
+                  name: "maker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "taker",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Address",
+                  name: "token",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "safetyDeposit",
+                  type: "uint256",
+                },
+                {
+                  internalType: "Timelocks",
+                  name: "timelocks",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct IBaseEscrow.Immutables",
+              name: "immutables",
+              type: "tuple",
+            },
+          ],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+      deployedOnBlock: 23058851,
     },
   },
   11155111: {

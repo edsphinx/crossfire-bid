@@ -2,12 +2,11 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
 const deployResolver: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
-  const { deployer, taker } = await hre.getNamedAccounts();
+  const { deployer } = await hre.getNamedAccounts();
   const { deploy, log, get } = hre.deployments;
   const networkName = hre.network.name;
   console.log(`--- [DEPLOYMENT] Starting Resolver deployment for network: ${networkName} ---`);
   log(`Deployer account: ${deployer}`);
-  log(`Taker account: ${taker}`);
 
   let limitOrderProtocolAddress: string;
   let escrowFactoryAddress: string;
@@ -69,7 +68,7 @@ const deployResolver: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
   console.log("Initiating 'Resolver' contract for Taker deployment...");
   await deploy("dstResolver", {
     contract: "Resolver",
-    from: taker,
+    from: deployer,
     args: [
       escrowFactoryAddress, // constructor argument: factory
       limitOrderProtocolAddress, // constructor argument: lop
@@ -80,7 +79,7 @@ const deployResolver: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
 
   console.log("✅ 'Resolver' contract for Taker deployed successfully.");
 
-  const dstResolverContract = await hre.ethers.getContract("dstResolver", taker);
+  const dstResolverContract = await hre.ethers.getContract("dstResolver", deployer);
   console.log("Deployed Resolver contract for Taker address:", await dstResolverContract.getAddress());
 };
 
